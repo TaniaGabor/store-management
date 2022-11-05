@@ -20,7 +20,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     private ResponseEntity<Object> handleException(ApiException exception) {
-        //TODO: Add logger
         return new ResponseEntity<>(exception, exception.getHttpStatus());
     }
 

@@ -13,15 +13,6 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ApiValidationException extends ApiException {
 
-    @Getter
-    @AllArgsConstructor
-    @FieldDefaults(level = AccessLevel.PRIVATE)
-    private static class ApiValidationSubException {
-        String field;
-        String message;
-        Object value;
-    }
-
     final List<ApiValidationSubException> exceptionList = new ArrayList<>();
 
     public ApiValidationException(HttpStatus status, String message) {
@@ -30,5 +21,14 @@ public class ApiValidationException extends ApiException {
 
     public void addException(String field, String message, Object value) {
         exceptionList.add(new ApiValidationSubException(field, message, value));
+    }
+
+    @Getter
+    @AllArgsConstructor
+    @FieldDefaults(level = AccessLevel.PRIVATE)
+    private static class ApiValidationSubException {
+        String field;
+        String message;
+        Object value;
     }
 }

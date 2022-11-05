@@ -1,5 +1,5 @@
 package ing.com.storemanagementapi.enums;
 
 public enum RoleEnum {
-    ADMIN, CLIENT
+    ROLE_ADMIN, ROLE_CUSTOMER
 }

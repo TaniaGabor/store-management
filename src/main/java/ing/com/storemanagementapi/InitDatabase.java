@@ -7,6 +7,7 @@ import ing.com.storemanagementapi.model.User;
 import ing.com.storemanagementapi.repository.ProductRepository;
 import ing.com.storemanagementapi.repository.RoleRepository;
 import ing.com.storemanagementapi.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -16,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Collections;
 
+@Slf4j
 @Configuration
 public class InitDatabase {
 
@@ -43,13 +45,15 @@ public class InitDatabase {
                     .name("Lamai")
                     .quantity(12)
                     .build());
+            log.info("Saved products in the database");
 
             Role admin = roleRepository.save(Role.builder()
-                    .role(RoleEnum.ADMIN)
+                    .role(RoleEnum.ROLE_ADMIN)
                     .build());
             Role client = roleRepository.save(Role.builder()
-                    .role(RoleEnum.CLIENT)
+                    .role(RoleEnum.ROLE_CUSTOMER)
                     .build());
+
 
             userRepository.save(User.builder().id(1)
                     .name("admin")
@@ -64,6 +68,7 @@ public class InitDatabase {
                     .username("client")
                     .email("client@yahoo.com").roles(Collections.singleton(client))
                     .build());
+            log.info("Saved users in the database");
         };
     }
 }

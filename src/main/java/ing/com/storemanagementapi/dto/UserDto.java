@@ -10,6 +10,7 @@ import java.util.Set;
 
 @Value
 @Builder
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserDto {
     long id;
